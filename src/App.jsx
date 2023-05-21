@@ -1,6 +1,5 @@
 //import { useState } from 'react'
 import styled from "styled-components";
-import cards from "./cards";
 import { useState } from "react";
 
 import Header from "./Header";
