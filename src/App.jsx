@@ -1,32 +1,31 @@
 //import { useState } from 'react'
-import styled from 'styled-components';
-import cards from './cards'
+import styled from "styled-components";
+import cards from "./cards";
+import { useState } from "react";
 
-
-import Header from './Header';
-import Flashcards from './Flashcards';
-import Counter from './Counter';
-
+import Header from "./Header";
+import Flashcards from "./Flashcards";
+import Counter from "./Counter";
 
 function App() {
-  
+  const [counter, setCounter] = useState(0);
 
   return (
     <SCPagesize>
       <Header />
-      <Flashcards />
-      <Counter />
+      <Flashcards counter={counter} setCounter={setCounter} />
+      <Counter counter={counter} />
     </SCPagesize>
-  )
+  );
 }
 
-export default App
+export default App;
 
 const SCPagesize = styled.div`
   height: 100%;
-  background: #FB6B6B;
-  border: 1px solid #DBDBDB;
-  display:flex;
-  flex-direction: column ;
+  background: #fb6b6b;
+  border: 1px solid #dbdbdb;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-`
+`;

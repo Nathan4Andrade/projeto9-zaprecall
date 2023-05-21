@@ -1,17 +1,26 @@
+/* eslint-disable react/prop-types */
 import Card from "./Card";
 import cards from "./cards";
+import styled from "styled-components";
 
-export default function Flashcards() {
-    
+export default function Flashcards(props) {
+  const { counter, setCounter } = props;
+
   return (
-    <div className="flashcards">
+    <SCFlashcards>
       {cards.map((card, index) => (
         <Card
           key={index}
           index={index}
           question={card.question}
-          answer={card.answer}></Card>
+          answer={card.answer}
+          counter={counter}
+          setCounter={setCounter}></Card>
       ))}
-    </div>
+    </SCFlashcards>
   );
 }
+
+const SCFlashcards = styled.div`
+  margin-bottom: 70px;
+`;

@@ -1,23 +1,49 @@
+/* eslint-disable react/prop-types */
 import styled from "styled-components";
-import seta_play from "./assets/seta_play.png";
-import seta_virar from "./assets/seta_virar.png";
 import { useState } from "react";
 
-function playCard() {
-  return false;
-}
+import seta_play from "./assets/seta_play.png";
+import seta_virar from "./assets/seta_virar.png";
+import icone_certo from "./assets/icone_certo.png";
+import icone_erro from "./assets/icone_erro.png";
+import icone_quase from "./assets/icone_quase.png";
+
 export default function Card(props) {
-  const { index, question, answer } = props;
+  const { index, question, answer, counter, setCounter } = props;
   const [flipped, setFlipped] = useState(false);
   const [showQuestion, setShowQuestion] = useState(false);
+  const [isAnswered, setIsAnswered] = useState(false);
+  const [result, setResult] = useState(icone_certo);
+  const [colorFont, setColorFont] = useState("black");
+  const [textDecoration, setTextDecoration] = useState("none");
 
-  const handleCardClick = () => {
-    if (!flipped) {
+  function handleCardClick() {
+    if (!flipped && !isAnswered) {
       setShowQuestion(!showQuestion);
+      setIsAnswered(!isAnswered);
     } else {
       setFlipped(false);
+      let newCounter = counter + 1;
+      setCounter(newCounter);
+      setTextDecoration("line-through");
     }
-  };
+  }
+
+  function handleRed() {
+    handleCardClick();
+    setResult(icone_erro);
+    setColorFont("#ff3030");
+  }
+  function handleGreen() {
+    handleCardClick();
+    setResult(icone_certo);
+    setColorFont("#2fbe34");
+  }
+  function handleYellow() {
+    handleCardClick();
+    setResult(icone_quase);
+    setColorFont("#ff922e");
+  }
 
   const handleContentClick = () => {
     setFlipped(true);
@@ -26,8 +52,14 @@ export default function Card(props) {
 
   const frontCardDiv = (
     <SCFront>
-      <span>Pergunta {index + 1}</span>
-      <img src={seta_play} alt="play" onClick={handleCardClick} />
+      <span style={{ color: colorFont, textDecorationLine: textDecoration }}>
+        Pergunta {index + 1}
+      </span>
+      <img
+        src={isAnswered ? result : seta_play}
+        alt="play"
+        onClick={handleCardClick}
+      />
     </SCFront>
   );
   const questionDiv = (
@@ -40,9 +72,9 @@ export default function Card(props) {
     <SCAnswer>
       <span>{answer}</span>
       <Btns>
-        <Red onClick={handleCardClick}>Não lembrei</Red>
-        <Yellow onClick={handleCardClick}>Quase não lembrei</Yellow>
-        <Green onClick={handleCardClick}>Zap!</Green>
+        <Red onClick={handleRed}>Não lembrei</Red>
+        <Yellow onClick={handleYellow}>Quase não lembrei</Yellow>
+        <Green onClick={handleGreen}>Zap!</Green>
       </Btns>
     </SCAnswer>
   );
@@ -107,6 +139,8 @@ const SCFront = styled(SCCard)`
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
+    color: black;
+    text-decoration-line: none;
   }
 `;
 
