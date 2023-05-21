@@ -50,37 +50,89 @@ export default function Card(props) {
     setShowQuestion(!showQuestion);
   };
 
+  function icon() {
+    if (!isAnswered) {
+      return (
+        <img
+          src={seta_play}
+          alt="play"
+          onClick={handleCardClick}
+          data-test="play-btn"
+        />
+      );
+    }
+    if (isAnswered) {
+      if (result == icone_certo) {
+        return (
+          <img
+            src={icone_certo}
+            alt="play"
+            onClick={handleCardClick}
+            data-test="zap-icon"
+          />
+        );
+      } else if (result == icone_quase) {
+        return (
+          <img
+            src={icone_quase}
+            alt="play"
+            onClick={handleCardClick}
+            data-test="partial-icon"
+          />
+        );
+      } else if (result == icone_erro) {
+        return (
+          <img
+            src={icone_erro}
+            alt="play"
+            onClick={handleCardClick}
+            data-test="no-icon"
+          />
+        );
+      }
+    }
+  }
+
   const frontCardDiv = (
     <SCFront>
-      <span style={{ color: colorFont, textDecorationLine: textDecoration }}>
+      <span
+        style={{ color: colorFont, textDecorationLine: textDecoration }}
+        data-test="flashcard-text">
         Pergunta {index + 1}
       </span>
-      <img
-        src={isAnswered ? result : seta_play}
-        alt="play"
-        onClick={handleCardClick}
-      />
+      {icon()}
     </SCFront>
   );
   const questionDiv = (
     <SCQuestion>
-      <span>{question}</span>
-      <img src={seta_virar} alt="virar" onClick={handleContentClick} />
+      <span data-test="flashcard-text">{question}</span>
+      <img
+        src={seta_virar}
+        alt="virar"
+        onClick={handleContentClick}
+        data-test="turn-btn"
+      />
     </SCQuestion>
   );
   const answerDiv = (
     <SCAnswer>
-      <span>{answer}</span>
+      <span data-test="flashcard-text">{answer}</span>
       <Btns>
-        <Red onClick={handleRed}>Não lembrei</Red>
-        <Yellow onClick={handleYellow}>Quase não lembrei</Yellow>
-        <Green onClick={handleGreen}>Zap!</Green>
+        <Red onClick={handleRed} data-test="no-btn">
+          Não lembrei
+        </Red>
+        <Yellow onClick={handleYellow} data-test="partial-btn">
+          Quase não lembrei
+        </Yellow>
+        <Green onClick={handleGreen} data-test="zap-btn">
+          Zap!
+        </Green>
       </Btns>
     </SCAnswer>
   );
 
   return (
-    <SCCard>
+    <SCCard data-test="flashcard">
       {flipped ? answerDiv : showQuestion ? questionDiv : frontCardDiv}
     </SCCard>
   );
