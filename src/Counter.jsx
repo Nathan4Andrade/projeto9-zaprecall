@@ -5,7 +5,7 @@ export default function Counter(props) {
   const { counter } = props;
   return (
     <SCFooter>
-      <p>{counter}/8 CONCLUÍDOS</p>
+      <p data-test="footer">{counter}/8 CONCLUÍDOS</p>
     </SCFooter>
   );
 }
