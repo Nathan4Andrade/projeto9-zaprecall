@@ -24,7 +24,8 @@ export default function Card(props) {
     } else {
       setFlipped(false);
       let newCounter = counter + 1;
-      setCounter(newCounter);
+
+      newCounter <= 8 ? setCounter(newCounter) : setCounter(counter);
       setTextDecoration("line-through");
     }
   }
