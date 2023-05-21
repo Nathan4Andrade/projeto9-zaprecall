@@ -1,13 +1,13 @@
-import styled from "styled-components"
-import logo from './assets/logo.png'
+import styled from "styled-components";
+import logo from "./assets/logo.png";
 
-export default function Header(){
-    return (
-        <SCHeader>
-            <img src={logo} alt="logo" />
-            <h1>ZapRecall</h1>
-        </SCHeader>
-    )
+export default function Header() {
+  return (
+    <SCHeader>
+      <img src={logo} alt="logo" />
+      <h1>ZapRecall</h1>
+    </SCHeader>
+  );
 }
 
 const SCHeader = styled.div`
@@ -22,7 +22,7 @@ const SCHeader = styled.div`
     height: 60px;
   }
   h1 {
-    font-family: 'Righteous';
+    font-family: "Righteous";
     font-style: normal;
     font-weight: 400;
     font-size: 36px;
@@ -31,8 +31,8 @@ const SCHeader = styled.div`
     align-items: center;
     text-align: center;
     letter-spacing: -0.012em;
-    color: #FFFFFF;
+    color: #ffffff;
 
     margin-left: 10px;
   }
-`
+`;
