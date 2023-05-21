@@ -64,32 +64,11 @@ export default function Card(props) {
     }
     if (isAnswered) {
       if (result == icone_certo) {
-        return (
-          <img
-            src={icone_certo}
-            alt="play"
-            onClick={handleCardClick}
-            data-test="zap-icon"
-          />
-        );
+        return <img src={icone_certo} alt="play" data-test="zap-icon" />;
       } else if (result == icone_quase) {
-        return (
-          <img
-            src={icone_quase}
-            alt="play"
-            onClick={handleCardClick}
-            data-test="partial-icon"
-          />
-        );
+        return <img src={icone_quase} alt="play" data-test="partial-icon" />;
       } else if (result == icone_erro) {
-        return (
-          <img
-            src={icone_erro}
-            alt="play"
-            onClick={handleCardClick}
-            data-test="no-icon"
-          />
-        );
+        return <img src={icone_erro} alt="play" data-test="no-icon" />;
       }
     }
   }
